@@ -1,0 +1,76 @@
+ 
+<mat-card>    
+    <!-- Title of an Card -->       
+    <mat-card-title>    
+        Login    
+    </mat-card-title>    
+    
+    <mat-card-content>    
+        <form novalidate
+              autocomplete="off"
+              (ngSubmit)="onSubmit()"
+              [formGroup]="loginForm">    
+            <table>    
+                <tr>    
+                    <td>    
+                        <mat-form-field class="demo-full-width"> 
+                            <input matInput placeholder="Nome *"
+                                   formControlName="nome"                   
+                                   [ngClass]="{'is-invalid': (loginForm.get('nome').touched || 
+                                                              loginForm.get('nome').dirty) &&
+                                                              !loginForm.get('nome').valid }">    
+                                   <mat-error *ngIf="submitted && loginForm.get('nome').errors?.required">  
+                                     Per favore inserisci il nome. </mat-error>  
+                                   <mat-error *ngIf="submitted && loginForm.get('nome').errors?.minlength">  
+                                     Il nome deve essere minimo 3 caratteri. </mat-error>                          
+                        </mat-form-field>    
+                    </td>    
+                    
+                </tr>    
+
+                                
+                <tr>    
+                    <td>    
+                        <mat-form-field class="demo-full-width"> 
+                            <input matInput placeholder="Password *"
+                                   formControlName="password"                   
+                                   [ngClass]="{'is-invalid': (loginForm.get('password').touched || 
+                                                             loginForm.get('password').dirty) &&
+                                                              !loginForm.get('password').valid }">    
+                                   <mat-error *ngIf="submitted && loginForm.get('password').errors?.required">  
+                                      Perfavore inserisci la password. </mat-error>  
+                                   <mat-error *ngIf="submitted && loginForm.get('password').errors?.minlength">  
+                                      La passworde deve essere più lunga di 6 caratteri. </mat-error>                          
+                        </mat-form-field>    
+                    </td>    
+                    
+                </tr>                 
+                
+                
+                
+                
+                <tr>    
+                    <td colspan="2">    
+    
+                    </td>    
+                </tr>    
+                <tr>    
+                    <td colspan="2" class="content-center">    
+                        <button mat-raised-button color="primary" 
+                                type="submit"
+                                [disabled]="!loginForm.valid && loading">Login</button>    
+                            
+                    </td>    
+                </tr>   
+                <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+         
+            </table> 
+            <button mat-raised-button color="accent" (click)="populateTestData()">Test Data</button>   
+        </form>    
+    </mat-card-content>    
+  </mat-card>   
+  
+  <br>Dirty: {{ loginForm.dirty }}
+  <br>Touched: {{ loginForm.touched }}
+  <br>Valid: {{ loginForm.valid }}
+  <br>Value: {{ loginForm.value | json }}

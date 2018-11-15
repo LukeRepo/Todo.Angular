@@ -1,0 +1,38 @@
+
+<div class="card">
+    <div class="card-header">
+        Bacheca di {{currentUser.nome}}
+    </div>
+  
+    <p>You're logged in !!</p>
+
+    <div class="card-body">
+        <nav class='navbar navbar-expand navbar-light bg-light'>
+            <ul class='nav nav-pills'>
+            <li><a class='nav-link' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }"
+            [routerLink]="['/task']">+ Task</a>
+          </li>
+          </ul>
+          </nav>
+        
+        
+        <div class="card" *ngFor='let task of tasks'>   
+            
+            <span >Nome Task: {{task.nomeTask}}</span><br/>
+            <span > Stato della Task: {{task.todo}}</span><br/>
+            <span > Dettagli Task: {{task.todo}}</span><br/>
+            <span > Data scadenza: {{task.dataScadenza}}</span><br/>
+            <a class='btn btn-primary' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }"
+            [routerLink]="['/studenti', studente.codiceFiscale]">Dettagli</a>
+            <button class="btn btn-primary" (click)="cancel(task)"
+            >Cancella task</button>
+        </div>
+    </div>
+
+
+ </div>
+
+    <p><a [routerLink]="['/login']">Logout</a></p>
+
+
+

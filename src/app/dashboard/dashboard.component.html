@@ -1,0 +1,136 @@
+<div>
+  <br>
+    <div class="container">
+        <div class="container">
+          <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
+              <div class="blocks">
+                    <p>
+                            <button mat-raised-button color="primary" 
+                            type="submit"
+                            [routerLink]="['/login']">Logout</button> 
+                    
+                    </p>  
+              </div>
+        </div>
+        <h3>Admin Dashboard</h3>
+    </div>
+    <br>
+
+
+    <div class="main-content">
+        <div class="container-fluid">
+          <h3>Tasks</h3>
+    <!-- <h4>Tasks</h4> -->
+    <div class="row"> 
+
+      
+    <div class="col-md-4">
+      <div class="card card-chart">
+          <div class="card-header card-header-danger">
+              <div class="ct-chart" id="insertedTasksChart"></div>
+          </div>
+          <div class="card-body">
+              <h4 class="card-title">Inserite</h4>
+              <p class="card-category"> {{tasks.length}} </p>
+          </div>
+          <div class="card-footer">
+              <div class="stats">
+                  <i class="material-icons">update</i> 
+              </div>
+          </div>
+      </div>      
+    </div>
+
+
+    <div class="col-md-4">
+      <div class="card card-chart">
+          <div class="card-header card-header-danger">
+              <div class="ct-chart" id="@completedTasksChart"></div>
+          </div>
+          <div class="card-body">
+              <h4 class="card-title">Completate</h4>
+              <p class="card-category">1/{{tasks.length}}</p>
+          </div>
+          <div class="card-footer">
+              <div class="stats">
+                  <i class="material-icons">check_box</i> 
+              </div>
+          </div>
+      </div>      
+    </div>
+
+    <div class="col-md-4">
+      <div class="card card-chart">
+          <div class="card-header card-header-danger">
+              <div class="ct-chart" id="outdateTasksChart"></div>
+          </div>
+          <div class="card-body">
+              <h4 class="card-title">Scadute</h4>
+              <p class="card-category">0/{{tasks.length}}</p>
+          </div>
+          <div class="card-footer">
+              <div class="stats">
+                  <i class="material-icons text-danger">warning</i> 
+              </div>
+          </div>
+      </div>      
+    </div>
+
+  </div>   
+</div>
+</div><br>
+
+
+<h3>Utenti</h3>
+
+    <div class="container">
+      <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card" >
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            
+          </mat-card-title>
+
+
+
+          
+
+          <mat-card-content> Utenti Registrati
+              <div class="example-container mat-elevation-z8">
+                  <mat-table #table [dataSource]="dataSource">
+                  <ng-container matColumnDef="id">
+                     <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                     <mat-cell *matCellDef="let user"> {{user.id}} </mat-cell>
+                  </ng-container>
+                  <ng-container matColumnDef="nome">
+                    <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+                    <mat-cell *matCellDef="let user"> {{user.nome}} </mat-cell>
+                  </ng-container>
+                    <ng-container matColumnDef="cognome">
+                      <mat-header-cell *matHeaderCellDef> Cognome </mat-header-cell>
+                      <mat-cell *matCellDef="let user"> {{user.cognome}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="email">
+                      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                      <mat-cell *matCellDef="let user"> {{user.emailGroup.email}} </mat-cell>
+                    </ng-container>
+                    <ng-container matColumnDef="delete">
+                      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                      <mat-cell *matCellDef="let user">
+
+                          <button button="submit" mat-raised-button color="primary" (click)="deleteUser(user.id)">
+                                  <mat-icon>delete</mat-icon>
+                          </button>
+                        
+                      </mat-cell>
+                    </ng-container>   
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                </div> 
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>

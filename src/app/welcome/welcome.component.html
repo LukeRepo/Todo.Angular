@@ -1,0 +1,53 @@
+<p>
+        <button mat-raised-button color="primary" 
+        type="submit"
+        [routerLink]="['/login']">Logout</button> 
+
+</p>  
+
+
+
+<h1>Ciao {{currentUser.nome}}!</h1> 
+
+
+<div class="card-body">
+    <nav class='navbar navbar-expand navbar-light bg-light'>
+        <ul class='nav nav-pills'>
+        <li><a class='nav-link' routerLinkActive='active' [routerLinkActiveOptions]="{ exact: true }"
+        [routerLink]="['/task']">New Task</a>
+      </li>
+      </ul>
+      </nav>
+    
+    
+      <mat-card  *ngFor="let task of tasks">
+            <mat-card-header>
+                    TASK: {{task.nomeTask}}
+            </mat-card-header>
+            <mat-card-subtitle> <br>
+                    Stato della Task: {{task.todo}}
+                    <span></span><br>    
+                      <!-- <mat-radio-group formControlName="task.todo">                     
+                          <mat-radio-button value="Inserito" >Inserito</mat-radio-button>    
+                          <mat-radio-button value="Fatto" >Fatto</mat-radio-button> 
+                          <mat-radio-button value="Scaduto" >Scaduto</mat-radio-button>    
+                      </mat-radio-group>    -->
+            </mat-card-subtitle>
+                 <mat-card-content>
+                        <p>
+                                Descrizione Task: {{task.descrizione}}
+                        </p>
+                        <p>       Data scadenza: {{task.dataScadenza.substring(0,10)}}
+
+                        </p>
+                 </mat-card-content>
+            <mat-card-actions>
+                    <button mat-button>UPDATE</button>
+                    <button color="warn" mat-button (click)="deleteTask(task.id)">DELETE</button>                    
+            </mat-card-actions>
+    </mat-card>
+</div>
+
+
+
+

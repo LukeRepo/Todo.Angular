@@ -1,0 +1,167 @@
+<div class="card">
+    <div class="card-header">
+      Register
+    </div>
+  
+    <div class="card-body">
+      <form novalidate
+            autocomplete="off"
+            (ngSubmit)="register()"
+            [formGroup]="registerForm">
+  
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label"
+                 for="nomeId">Nome </label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="nomeId"
+                   type="text"
+                   placeholder="Nome (richiesto)"
+                   formControlName="nome"
+                   [ngClass]="{'is-invalid': (registerForm.get('nome').touched || 
+                                               registerForm.get('nome').dirty) &&
+                                              !registerForm.get('nome').valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="submitted && registerForm.get('nome').errors?.required">
+                Perfavore inserisci il tuo nome.
+              </span>
+              <span *ngIf="submitted && registerForm.get('nome').errors?.minlength">
+                Il nome dovrebbe essere più lungo di 3 lettere.
+              </span>
+            </span>
+          </div>
+        </div>
+  
+        <div class="form-group row">
+          <label class="col-md-2 col-form-label"
+                 for="cognomeId">Cognome</label>
+          <div class="col-md-8">
+            <input class="form-control"
+                   id="cognomeId"
+                   type="text"
+                   placeholder="Cognome (richiesto)"
+                   formControlName="cognome"
+                   [ngClass]="{'is-invalid': (registerForm.get('cognome').touched || 
+                                             registerForm.get('cognome').dirty) &&
+                                            !registerForm.get('cognome').valid }" />
+            <span class="invalid-feedback">
+              <span *ngIf="submitted && registerForm.get('cognome').errors?.required">
+                Perfavore inserisci il tuo cognome.
+              </span>
+              <span *ngIf="submitted && registerForm.get('cognome').errors?.maxlength">
+                Il cognome dovrebbe essere priù corto di 50 lettere.
+              </span>
+            </span>
+          </div>
+        </div>
+         
+  
+        <div formGroupName="emailGroup">
+  
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="emailId">Email</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="emailId"
+                     type="email"
+                     placeholder="Email (richiesto)"
+                     formControlName="email"
+                     [ngClass]="{'is-invalid': registerForm.get('emailGroup').errors ||
+                                                ((registerForm.get('emailGroup.email').touched || 
+                                                registerForm.get('emailGroup.email').dirty) && 
+                                                !registerForm.get('emailGroup.email').valid) }" />
+              <span class="invalid-feedback">
+                <span *ngIf="submitted && registerForm.get('emailGroup.email').errors?.required">
+                  Perfavore inserisci la tua email.
+                </span>
+                <span *ngIf="submitted && registerForm.get('emailGroup.email').errors?.email">
+                  Perfavore inserisci una email valida.
+                </span>
+              </span>
+            </div>
+          </div>
+  
+          <div class="form-group row">
+            <label class="col-md-2 col-form-label"
+                   for="confirmEmailId">Conferma Email</label>
+            <div class="col-md-8">
+              <input class="form-control"
+                     id="confirmEmailId"
+                     type="email"
+                     placeholder="Conferma Email (richiesto)"
+                     formControlName="confirmEmail"
+                     [ngClass]="{'is-invalid': registerForm.get('emailGroup').errors ||
+                                               ((registerForm.get('emailGroup.confirmEmail').touched || 
+                                               registerForm.get('emailGroup.confirmEmail').dirty) && 
+                                                !registerForm.get('emailGroup.confirmEmail').valid) }" />
+              <span class="invalid-feedback">
+                <span *ngIf="submitted && registerForm.get('emailGroup.confirmEmail').errors?.required">
+                  Perfavore inserisci la tua email.
+                </span>
+                <span *ngIf="submitted && registerForm.get('emailGroup').errors?.match">
+                  Gli indirizzi email sono diversi.
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>      
+       
+
+        <div class="form-group row">
+                <label class="col-md-2 col-form-label"
+                       for="nomeId">Password</label>
+                <div class="col-md-8">
+                  <input class="form-control"                             
+                         type="password"
+                         placeholder="Password (richiesta)"
+                         formControlName="password"
+                         [ngClass]="{'is-invalid': (registerForm.get('password').touched || 
+                                                     registerForm.get('password').dirty) &&
+                                                    !registerForm.get('password').valid }" />
+                  <span class="invalid-feedback">
+                    <span *ngIf="submitted && registerForm.get('password').errors?.required">
+                      Perfavore inserisci la password.
+                    </span>
+                    <span *ngIf="submitted && registerForm.get('password').errors?.minlength">
+                      Il nome dovrebbe essere più lungo di 6 lettere.
+                    </span>
+                  </span>
+                </div>
+         </div>
+
+        <div class="form-group row">
+          <div class="col-md-1">
+            <button class="btn btn-primary"
+                    type="submit"
+                    [disabled]="!registerForm.valid && loading">
+              Submit
+            </button>
+            <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+        
+          </div> 
+          
+         
+          <div class="col-md-2">
+              <br> <br>
+            <button class="btn btn-secondary"
+                    type="button"
+                    (click)="populateTestData()">
+              Test Data
+            </button>       
+          </div>
+          
+
+          
+
+        </div>
+      </form>
+    </div>
+  </div>
+  <br>Dirty: {{ registerForm.dirty }}
+  <br>Touched: {{ registerForm.touched }}
+  <br>Valid: {{ registerForm.valid }}
+  <br>Value: {{ registerForm.value | json }}
+  <div class="card" >
+    {{result}}
+  </div>
