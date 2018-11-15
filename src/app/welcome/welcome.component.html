@@ -25,24 +25,26 @@
                     TASK: {{task.nomeTask}}
             </mat-card-header>
             <mat-card-subtitle> <br>
-                    Stato della Task: {{task.todo}}
+                    Dettagli Task: {{task.todo}} {{task.inserito}}/ Fatto:{{task.fatto}} /Scaduto:{{task.scaduto}} /Id:{{task.id}}
                     <span></span><br>    
-                      <!-- <mat-radio-group formControlName="task.todo">                     
-                          <mat-radio-button value="Inserito" >Inserito</mat-radio-button>    
-                          <mat-radio-button value="Fatto" >Fatto</mat-radio-button> 
-                          <mat-radio-button value="Scaduto" >Scaduto</mat-radio-button>    
-                      </mat-radio-group>    -->
+                      
             </mat-card-subtitle>
                  <mat-card-content>
                         <p>
-                                Descrizione Task: {{task.descrizione}}
+                            Descrizione Task: {{task.descrizione}}
                         </p>
-                        <p>       Data scadenza: {{task.dataScadenza.substring(0,10)}}
-
+                        <p>      
+                             Data scadenza: {{task.dataScadenza.substring(0,10)}}
                         </p>
+                        <section class="todo-section">
+                                        <button color="primary" mat-button (click)="CompleteTask(task, task.id)">{{showComplete ? 'Fatto' : 'Da Fare'}}</button>                                           
+                                        <div class="todo-stats">
+                                                        <i class="fatto-margin" *ngIf="showComplete" class="material-icons" >check_box</i> 
+                                                        <i class="fatto-margin" *ngIf="validazioneData(task)" class="material-icons text-danger">warning</i>
+                                        </div>                                     
+                        </section>
                  </mat-card-content>
-            <mat-card-actions>
-                    <button mat-button>UPDATE</button>
+            <mat-card-actions>                    
                     <button color="warn" mat-button (click)="deleteTask(task.id)">DELETE</button>                    
             </mat-card-actions>
     </mat-card>

@@ -8,18 +8,6 @@ import { MatPaginator } from "@angular/material";
 import * as Chartist from 'chartist';
 
 
-function validazioneData(task: Task) {
-  var scadenza=new Date(task.dataScadenza);
-  var data=new Date();
-  
-  if (scadenza>new Date(data.getFullYear(),data.getMonth(),data.getDate()))
-  {
-    return { 'scaduto': true };
-  } 
-  return null;
-}
-
-
 @Component({  
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',

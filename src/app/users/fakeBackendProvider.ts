@@ -87,7 +87,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             if (request.url.match(/\/tasks\/\d+$/) && request.method === 'GET') {
                 // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
                 if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-                    // find user by id in users array
+                    // find task by id in tasks array
                     let urlParts = request.url.split('/');
                     let id = parseInt(urlParts[urlParts.length - 1]);
                     let matchedTasks = tasks.filter(task => { return task.id === id; });
@@ -131,7 +131,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                     return throwError({ error: { message: 'Il nome  della task"' + newTask.nomeTask + '" è già inserito' } });
                 }
 
-                // save new user
+                // save new task
                 newTask.id = tasks.length + 1;
                 tasks.push(newTask);
                 localStorage.setItem('tasks', JSON.stringify(tasks));

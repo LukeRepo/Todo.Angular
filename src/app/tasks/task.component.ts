@@ -21,6 +21,7 @@ export class TaskComponent implements OnInit {
   errorMessage:string;
   loading = false;
   submitted = false;
+  inserito = false;
   // timeLine: string;
   // todos: string[] = ['Inserito', 'Fatto', 'Scaduto'];
 
@@ -58,7 +59,8 @@ export class TaskComponent implements OnInit {
 populateTestData(): void {
   this.taskForm.patchValue({
     nomeTask: 'Jack e la pianta di fagioli',
-    todo: 'Inserito',    
+    Todo: 'Inserito', 
+    inserito: true,   
     descrizione: 'Arrampicarsi sulla pianta di fagioli',
     dataScadenza: '2030-10-10'
   });
@@ -67,7 +69,7 @@ populateTestData(): void {
 
 save() {
   this.submitted = true;
-
+  this.inserito=true;
 // stop here if form is invalid
       if (this.taskForm.invalid) {
          return;
@@ -79,6 +81,7 @@ save() {
               data => {
                   this.alertService.success('New task added', true);
                   this.router.navigate(['/welcome']);
+                  //this.taskForm.patchValue({inserito: true})
               },
               error => {
                   this.alertService.error(error);
@@ -88,7 +91,7 @@ save() {
 
 
 
-    console.log('Saved: ' + JSON.stringify(this.taskForm.value));
+    console.log('Saved: ' + JSON.stringify(this.taskForm.value) + this.inserito.valueOf());
 }
 }
   

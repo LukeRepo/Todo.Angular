@@ -2,8 +2,11 @@ export class Task {
     id: number;
     nomeTask: string;
     todo: string;
+    inserito: boolean;
+    fatto: boolean;
+    scaduto: boolean;
     descrizione: string;
-    dataScadenza = '10-10-2099';
+    dataScadenza = Date;
 
     constructor(values: Object = {}) {
       Object.assign(this, values);
