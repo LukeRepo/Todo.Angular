@@ -26,6 +26,7 @@ export class WelcomeComponent implements OnInit {
   fatto = false;  
   inserito = false;
   scaduto = false;
+  dataScadenza = Date;
 
   constructor(private userService: UserService,
               private taskService: TaskService,
@@ -64,40 +65,45 @@ export class WelcomeComponent implements OnInit {
     this.taskService.getAll().pipe(first()).subscribe(tasks => { 
         this.tasks = tasks; 
     });
-  }
-
-  showCompleteTask(task: Task, id: number) {    
-    if (task.id === id) {
-      this.showComplete = !this.showComplete;
-      task.inserito = true;
-    }
-    
-    this.taskService.getById(this.taskForm.value)
-          .pipe(first())
-          .subscribe(
-              data => {
-                  this.alertService.success('Copleteted a new task!', true);                  
-                  this.taskForm.patchValue({fatto: true})
-              },
-              error => {
-                  this.alertService.error(error);
-                  
-              });  
-    console.log('Saved: ' + JSON.stringify(this.taskForm.value) );
-  }
+  } 
   
 
-  CompleteTask(task: Task, id: number) {
-    if (id === task.id) {
-      this.showComplete = !this.showComplete;
-    }      
+  completeTask(task: Task, id: number) {
+    this.taskService.update(id).pipe(first()).subscribe(() => { 
+      this.loadAllTasks() 
+  });      
     task.fatto= true;
     
   }    
+
+
+  showCompleteTask(task: Task) {    
+    if (task.fatto) {
+      this.showComplete = !this.showComplete;
+      return true;
+    }
+    
+    // this.taskService.getById(this.taskForm.value)
+    //       .pipe(first())
+    //       .subscribe(
+    //           data => {
+    //               this.alertService.success('Task completed!', true);                  
+    //               this.taskForm.patchValue({fatto: true})
+    //           },
+    //           error => {
+    //               this.alertService.error(error);
+                  
+    //           });  
+    // console.log('Saved: ' + JSON.stringify(this.taskForm.value) );
+  }
   
-  validazioneData(task: Task) {        
-        
-     if (task.dataScadenza) {
+  validazioneData(task: Task, id: Number) {        
+    var dataScadenza= task.dataScadenza;
+    var dataOggi=new Date();
+
+    if (task.dataScadenza) {  
+    
+    //  if (dataScadenza) > new Date(dataOggi.getFullYear(),dataOggi.getMonth(),dataOggi.getDate())) {
       return this.scaduto= true, task.scaduto = true;
      }
     

@@ -2,9 +2,9 @@ export class Task {
     id: number;
     nomeTask: string;
     todo: string;
-    inserito: boolean;
-    fatto: boolean;
-    scaduto: boolean;
+    inserito = false;
+    fatto = false;
+    scaduto = false;
     descrizione: string;
     dataScadenza = Date;
 

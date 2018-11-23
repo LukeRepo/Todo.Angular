@@ -22,6 +22,8 @@ export class TaskComponent implements OnInit {
   loading = false;
   submitted = false;
   inserito = false;
+  fatto = false;
+  scaduto = false;
   // timeLine: string;
   // todos: string[] = ['Inserito', 'Fatto', 'Scaduto'];
 
@@ -34,23 +36,11 @@ export class TaskComponent implements OnInit {
     
   }
 
-  // Task() {
-  //   this.formGroups = [];
-  //   for (let i = 0; i < this.task.length; i++) {
-  //     this.formGroups[i]= this.fb.group({
-  //       task: this.task[i].nomeTask,
-  //       nomeTask: ['', [Validators.required]],                
-  //       todo: ['', [Validators.required]]  
-  //     });
-      
-  //   }
-    
-  // }
+  
 
   ngOnInit(): void {
     this.taskForm = this.fb.group({
-        nomeTask: ['', [Validators.required, Validators.minLength(3)]],
-        //todo: ['', [Validators.required]],     
+        nomeTask: ['', [Validators.required, Validators.minLength(3)]],           
         descrizione: ['', [Validators.required]],
         dataScadenza: ['', [Validators.required]],
     });
@@ -68,13 +58,15 @@ populateTestData(): void {
 }
 
 save() {
-  this.submitted = true;
-  this.inserito=true;
+  this.submitted = true;  
 // stop here if form is invalid
-      if (this.taskForm.invalid) {
+      if (this.taskForm.invalid) {        
          return;
       }
       this.loading = true;
+      this.inserito=true;
+        this.fatto=false;
+        this.scaduto=false;
       this.taskService.addTask(this.taskForm.value)
           .pipe(first())
           .subscribe(
@@ -91,7 +83,7 @@ save() {
 
 
 
-    console.log('Saved: ' + JSON.stringify(this.taskForm.value) + this.inserito.valueOf());
+    console.log('Saved: ' + JSON.stringify(this.taskForm.value) + ' Inserito: ' + this.inserito.valueOf() + ' Fatto: ' +  this.fatto.valueOf() + ' Scaduto: '+ this.scaduto.valueOf());
 }
 }
   
