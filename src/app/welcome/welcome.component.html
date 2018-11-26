@@ -33,15 +33,17 @@
                         <p>
                             Descrizione Task: {{task.descrizione}}
                         </p>
-                        <p>      
-                             Data scadenza: {{task.dataScadenza.substring(0,10)}}
+                        <p >      
+                             Data scadenza: {{task.dataScadenza.substring(0,10)}} {{(task.dataScadenza > dataOggi) ? 'Sei in tempo' : 'Scaduto'}} <!-- oggi è il : {{dataOggi}} -->
                         </p>
                         <section class="todo-section">
                                         <button color="primary" mat-button (click)="completeTask(task, task.id)">{{showComplete ? 'Fatto' : 'Da Fare'}}</button>                                           
                                         <div class="todo-stats">
-                                                        <i class="fatto-margin" *ngIf="showCompleteTask(task, task.id)" class="material-icons" >check_box</i> 
-                                                        <i class="fatto-margin" *ngIf="validazioneData(task, task.id)" class="material-icons text-danger">warning</i>
-                                        </div>                                     
+                                                        <i class="fatto-margin" *ngIf="showCompleteTask(task, task.id)" class="material-icons" >check_box</i>                                                         
+                                        </div> 
+                                        <div class="scadenza">
+                                                        <i class="fatto-margin" *ngIf="dataOggi > task.dataScadenza" class="material-icons text-danger">warning</i>
+                                        </div>                                    
                         </section>
                  </mat-card-content>
             <mat-card-actions>                    

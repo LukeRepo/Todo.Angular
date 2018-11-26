@@ -6,7 +6,7 @@ export class Task {
     fatto = false;
     scaduto = false;
     descrizione: string;
-    dataScadenza = Date;
+    dataScadenza = new Date();
 
     constructor(values: Object = {}) {
       Object.assign(this, values);

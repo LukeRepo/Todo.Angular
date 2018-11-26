@@ -24,6 +24,7 @@ export class TaskComponent implements OnInit {
   inserito = false;
   fatto = false;
   scaduto = false;
+  dataScadenza = new Date();
   // timeLine: string;
   // todos: string[] = ['Inserito', 'Fatto', 'Scaduto'];
 

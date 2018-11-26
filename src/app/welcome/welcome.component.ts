@@ -8,6 +8,7 @@ import { FormGroup } from '@angular/forms';
 import { AlertService } from '../_directives/alert.service';
 import { Router } from '@angular/router';
 import { isDate } from 'util';
+import { stringify } from 'querystring';
 
  
 
@@ -26,12 +27,13 @@ export class WelcomeComponent implements OnInit {
   fatto = false;  
   inserito = false;
   scaduto = false;
-  dataScadenza = Date;
+  //dataScadenza = Date;
+  dataOggi = new Date().toJSON(stringify);
 
   constructor(private userService: UserService,
               private taskService: TaskService,
               private alertService: AlertService,
-              private router: Router
+              private router: Router              
     ) { 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.currentTask = JSON.parse(localStorage.getItem('currentTask'));
@@ -97,14 +99,15 @@ export class WelcomeComponent implements OnInit {
     // console.log('Saved: ' + JSON.stringify(this.taskForm.value) );
   }
   
-  validazioneData(task: Task, id: Number) {        
-    var dataScadenza= task.dataScadenza;
-    var dataOggi=new Date();
+  validazioneData(task: Task) {        
+       var dataOggi=new Date();
+      var scadenza = task.dataScadenza;
+      //alert("La Task " + task.nomeTask + " è scaduta oggi è: " + dataOggi + "scade il : " + task.dataScadenza);
 
-    if (task.dataScadenza) {  
-    
-    //  if (dataScadenza) > new Date(dataOggi.getFullYear(),dataOggi.getMonth(),dataOggi.getDate())) {
-      return this.scaduto= true, task.scaduto = true;
+    if (scadenza < dataOggi) {  
+          console.log(task.dataScadenza);
+          //alert("La Task " + task.nomeTask + " è scaduta oggi è: " + dataOggi + "scade il : " + task.dataScadenza);
+          return this.scaduto= true, task.scaduto = true;
      }
     
   }
