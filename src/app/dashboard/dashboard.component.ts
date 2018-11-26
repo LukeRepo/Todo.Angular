@@ -6,6 +6,7 @@ import { TaskService } from "../tasks/task.service";
 import { first } from "rxjs/operators";
 import { MatPaginator } from "@angular/material";
 import * as Chartist from 'chartist';
+import { stringify } from "querystring";
 
 
 @Component({  
@@ -18,6 +19,8 @@ export class DashboardComponent implements OnInit {
     currentUser: User;  
   users: User[] = [];
   tasks: Task[] = [];
+  dataOggi = new Date();
+  
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   
@@ -147,6 +150,13 @@ deleteTask(id: number) {
   });    
 }
 
-
+// showTaskScadute(task: Task) {
+//   if (task.dataScadenza > this.dataOggi) {
+//     for (let index = 0; index < Task.length; index++) {
+//       const scaduto = Task[index];
+      
+//     }
+//   }
+// }
 
 }

@@ -3,7 +3,7 @@ export class Task {
     nomeTask: string;
     todo: string;
     inserito = false;
-    fatto = false;
+    fatto : boolean;
     scaduto = false;
     descrizione: string;
     dataScadenza = new Date();

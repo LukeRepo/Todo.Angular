@@ -33,6 +33,21 @@ export class TaskService {
   update(id: number) {
     return this.http.put(`${environment.apiUrl}/tasks/` + id, JSON.stringify(Task));
   }
+
+  // inserisciFatto(task: Task) {
+  //   return this.http.post(`${environment.apiUrl}/tasks/` , task);
+  // }
+
+  // updateTask(update) {
+  //   return this.http.put(`${environment.apiUrl}/tasks/` , update);    
+  // }
+
+    //Updates a Task
+//  updateTask(update) {
+//   return this.http
+//   .put(this.base_url + this.tasks_endpoint, update)
+//   .map(res => res.json());
+  // } //updateTask
   
 
 }

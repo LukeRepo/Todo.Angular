@@ -20,16 +20,16 @@
       </nav>
     
     
-      <mat-card  *ngFor="let task of tasks">
-            <mat-card-header>
+      <mat-card  *ngFor="let task of tasks" class="task-mat">
+            <mat-card-header class="header">
                     TASK: {{task.nomeTask}}
             </mat-card-header>
-            <mat-card-subtitle> <br>
+            <mat-card-subtitle class="subtitle"> <br>
                     Dettagli Task: inserito: {{task.inserito}}/ Fatto:{{task.fatto}} /Scaduto:{{task.scaduto}} /Id:{{task.id}} 
                     <span></span><br>    
                       
             </mat-card-subtitle>
-                 <mat-card-content>
+                 <mat-card-content class="content">
                         <p>
                             Descrizione Task: {{task.descrizione}}
                         </p>
@@ -47,7 +47,7 @@
                         </section>
                  </mat-card-content>
             <mat-card-actions>                    
-                    <button color="warn" mat-button (click)="deleteTask(task.id)">DELETE</button>                    
+                    <button color="warn" mat-button (click)="deleteTask(task.id)"  class="todo-section">DELETE</button>                    
             </mat-card-actions>
     </mat-card>
 </div>

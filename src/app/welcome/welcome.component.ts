@@ -71,10 +71,19 @@ export class WelcomeComponent implements OnInit {
   
 
   completeTask(task: Task, id: number) {
+    // this.taskService.update(id).pipe(first()).subscribe(data => {
+    //                 this.alertService.success('Task completed!', true);                  
+    //                 this.taskForm.patchValue({fatto: true})
+    //             },
+    //             error => {
+    //                 this.alertService.error(error);
+    task.fatto= true;
     this.taskService.update(id).pipe(first()).subscribe(() => { 
       this.loadAllTasks() 
+
   });      
-    task.fatto= true;
+    // task.fatto= true;
+    // this.fatto = true;
     
   }    
 
@@ -99,17 +108,5 @@ export class WelcomeComponent implements OnInit {
     // console.log('Saved: ' + JSON.stringify(this.taskForm.value) );
   }
   
-  validazioneData(task: Task) {        
-       var dataOggi=new Date();
-      var scadenza = task.dataScadenza;
-      //alert("La Task " + task.nomeTask + " è scaduta oggi è: " + dataOggi + "scade il : " + task.dataScadenza);
-
-    if (scadenza < dataOggi) {  
-          console.log(task.dataScadenza);
-          //alert("La Task " + task.nomeTask + " è scaduta oggi è: " + dataOggi + "scade il : " + task.dataScadenza);
-          return this.scaduto= true, task.scaduto = true;
-     }
-    
-  }
-
+  
 }

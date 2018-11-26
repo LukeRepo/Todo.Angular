@@ -3,13 +3,56 @@
 /* @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';  */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";   
 .mat-card {    
-    text-align: -webkit-center;    
+    text-align: -webkit-center;   
+    /*box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1); */
 }   
+
+/* sottolinatura con ombra */
+/* .mat-card :hover {
+    box-shadow: 5px 0px 40px grey;
+  }
+        @keyframes slide {
+          0% {
+            opacity: 0;
+            transform: translateY(70%);
+          } 
+          100% {
+            opacity: 1;
+            transform: translateY(0%);
+          }
+        }
+        @-webkit-keyframes slide {
+          0% {
+            opacity: 0;
+            -webkit-transform: translateY(70%);
+          } 
+          100% {
+            opacity: 1;
+            -webkit-transform: translateY(0%);
+          }
+        }
+        @media screen and (max-width: 768px) {
+          .col-sm-4 {
+            text-align: center;
+            margin: 25px 0;
+          }
+          .btn-lg {
+              width: 100%;
+              margin-bottom: 35px;
+          }
+        }
+        @media screen and (max-width: 480px) {
+          .logo {
+              font-size: 150px;
+          }
+        } */
 
 .mat-card-header {    
     /*text-align: center;*/ 
     color: darkblue ;
-    font-weight: bold;   
+    background-color: lightgray;
+    font-weight: bold;
+    box-shadow: 0 1px 1px black;
 }  
 
 .mat-card-subtitle {    

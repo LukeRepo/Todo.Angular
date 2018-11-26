@@ -152,9 +152,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                         let task = tasks[i];
                         if (task.id === id) {
                             // Update task ???
-                            tasks.values = updateTask.values;
+                            //task.push(updateTask.values);
+                            //tasks.values = updateTask.values;
+                            
+                            tasks.map(updateTask);
                             console.log(updateTask);
-                            localStorage.setItem('tasks', JSON.stringify(tasks));
+                            localStorage.setItem('tasks', JSON.stringify(tasks));                            
                             break;
                         }
                     }

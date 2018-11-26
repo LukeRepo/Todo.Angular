@@ -53,7 +53,8 @@ populateTestData(): void {
     Todo: 'Inserito', 
     inserito: true,   
     descrizione: 'Arrampicarsi sulla pianta di fagioli',
-    dataScadenza: '2030-10-10'
+    dataScadenza: '2030-10-10',
+    fatto: false
   });
  
 }
@@ -66,8 +67,8 @@ save() {
       }
       this.loading = true;
       this.inserito=true;
-        this.fatto=false;
-        this.scaduto=false;
+        //this.fatto=false;
+        //this.scaduto=false;
       this.taskService.addTask(this.taskForm.value)
           .pipe(first())
           .subscribe(
